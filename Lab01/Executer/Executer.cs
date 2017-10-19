@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using MyAttribute;
 
@@ -55,7 +55,7 @@ namespace Executer
                     catch (ArgumentException) { Console.WriteLine("Failed: {0}", singleMethod.Name); }
                 else
                 {
-                    ExecuteMeAttribute[] attr = (ExecuteMeAttribute[])singleMethod.GetCustomAttributes(typeof(ExecuteMeAttribute), true);
+                    ExecuteMeAttribute[] attr = (ExecuteMeAttribute[]) singleMethod.GetCustomAttributes(typeof(ExecuteMeAttribute), true);
                     foreach (ExecuteMeAttribute single in attr)
                         try { singleMethod.Invoke(classInstance, single.ArgsObjects); }
                         catch (ArgumentException) { Console.WriteLine("Failed: {0}", singleMethod.Name); }
