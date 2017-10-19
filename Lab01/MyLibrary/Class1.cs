@@ -24,5 +24,11 @@ namespace MyLibrary
         {
             Console.WriteLine("M3 s1={0} s2={1}", s1, s2);
         }
+
+        [ExecuteMe()]
+        public void M4()
+        {
+            Console.WriteLine("M4");
+        }
     }
 }
