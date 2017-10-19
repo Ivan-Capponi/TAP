@@ -31,4 +31,45 @@ namespace MyLibrary
             Console.WriteLine("M4");
         }
     }
+
+    public class Foo2
+    {
+        public Boolean Flag { get; }
+
+        [NonDefaultConstructor(true)]
+        public Foo2(Boolean flag)
+        {
+            Flag = flag;
+        }
+
+        [ExecuteMe()]
+        public void M5()
+        {
+            Console.WriteLine("M5");
+        }
+    }
+
+    public class Foo3
+    {
+        [ExecuteMe()]
+        public void M6()
+        {
+            Console.WriteLine("M6");
+        }
+    }
+
+    public class Foo4
+    {
+        [ExecuteMe("tre")]
+        public void M7(int a)
+        {
+            Console.WriteLine("M7 a={0}", a);
+        }
+
+        [ExecuteMe()]
+        public void M1024()
+        {
+            Console.WriteLine("M1024");
+        }
+    }
 }

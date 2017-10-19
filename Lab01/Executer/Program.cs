@@ -13,18 +13,19 @@ namespace Executer
                 if (type.IsClass)
                 {
                     MethodInfo[] methods = type.GetMethods();
+                    object classInstance;
+                    try { classInstance = Activator.CreateInstance(type, null); }
+                    catch (MissingMethodException){ continue; }
                     foreach (MethodInfo singleMethod in methods)
                     {
-                        object classInstance = Activator.CreateInstance(type, null);
                         ParameterInfo[] parameters = singleMethod.GetParameters();
-
                         if (parameters.Length == 0)
                             singleMethod.Invoke(classInstance, null);
                         else
                         {
                             ExecuteMeAttribute[] attr = (ExecuteMeAttribute[]) singleMethod.GetCustomAttributes(typeof(ExecuteMeAttribute), true);
                             foreach (ExecuteMeAttribute single in attr)
-                                singleMethod.Invoke(classInstance, single.ArgsObjects);    
+                                try { singleMethod.Invoke(classInstance, single.ArgsObjects); } catch (ArgumentException){ Console.WriteLine("Failed: {0}", singleMethod.Name); }
                         }   
                     }
                 }

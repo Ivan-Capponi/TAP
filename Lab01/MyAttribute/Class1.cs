@@ -12,4 +12,15 @@ namespace MyAttribute
             ArgsObjects = argsObjects;
         }
     }
+
+    [AttributeUsage(AttributeTargets.Constructor, AllowMultiple = true)]
+    public class NonDefaultConstructorAttribute : Attribute
+    {
+        public object[] ArgsObjects { get; }
+
+        public NonDefaultConstructorAttribute(params Object[] argsObjects)
+        {
+            ArgsObjects = argsObjects;
+        }
+    }
 }
