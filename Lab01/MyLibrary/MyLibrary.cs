@@ -34,12 +34,19 @@ namespace MyLibrary
 
     public class Foo2
     {
-        public Boolean Flag { get; }
+        public object Flag { get; }
 
         [NonDefaultConstructor(true)]
+        [NonDefaultConstructor(false)]
         public Foo2(Boolean flag)
         {
             Flag = flag;
+        }
+
+        [NonDefaultConstructor(35)]
+        public Foo2(int value)
+        {
+            Flag = value;
         }
 
         [ExecuteMe()]
@@ -67,9 +74,9 @@ namespace MyLibrary
         }
 
         [ExecuteMe()]
-        public void M1024()
+        public void M8()
         {
-            Console.WriteLine("M1024");
+            Console.WriteLine("M8");
         }
     }
 }
