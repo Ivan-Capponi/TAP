@@ -43,5 +43,11 @@
     <Compile Include="InterfaceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyAttribute\MyAttribute.csproj">
+      <Project>{20905829-9d8d-43e4-9990-90933bec28cb}</Project>
+      <Name>MyAttribute</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

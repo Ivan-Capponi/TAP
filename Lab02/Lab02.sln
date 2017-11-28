@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderInterfaces", "EmailSenderInterfaces\EmailSenderInterfaces.csproj", "{19B1CF6A-F43D-43A7-A2A8-56B7908B91B9}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailConsole", "MailConsole\MailConsole.csproj", "{399FA699-5774-402E-B5D0-AE0E9B9B20E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderImplementation3", "EmailSenderImplementation3\EmailSenderImplementation3.csproj", "{A8072ADB-E7AF-4614-A136-7CFBD185CD5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAttribute", "MyAttribute\MyAttribute.csproj", "{20905829-9D8D-43E4-9990-90933BEC28CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A8072ADB-E7AF-4614-A136-7CFBD185CD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8072ADB-E7AF-4614-A136-7CFBD185CD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8072ADB-E7AF-4614-A136-7CFBD185CD5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20905829-9D8D-43E4-9990-90933BEC28CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20905829-9D8D-43E4-9990-90933BEC28CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20905829-9D8D-43E4-9990-90933BEC28CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20905829-9D8D-43E4-9990-90933BEC28CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

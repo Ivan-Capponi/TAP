@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -9,7 +10,6 @@ namespace TinyDependencyInjectionContainer
     {
         private readonly Dictionary<Type, Type> _typeAssociation = new Dictionary<Type, Type>();
 
-        //Unico costruttore della classe.
         public InterfaceResolver(String filePath)
         {
             //Se il file passato come argomento non esiste notifico il chiamante sollevando un'eccezione.
@@ -57,18 +57,54 @@ namespace TinyDependencyInjectionContainer
                             _typeAssociation.Add(t, t);
         }
 
+        private T InstantiateParams<T>(Type classType)
+        {
+            ConstructorInfo[] constructors = classType.GetConstructors();
+            object[] arguments = new object[classType.GetConstructors().Length];
+            int parameterIndex = 0;
+            foreach (ConstructorInfo singleConstructor in constructors)
+            {
+                ParameterInfo[] parameters = singleConstructor.GetParameters();
+                foreach (ParameterInfo singleParameter in parameters)
+                {
+                    Type parameterType = singleParameter.GetType();
+                    if (_typeAssociation[parameterType] is null)
+                        throw new ArgumentException("Class not found in *.txt file associated");
+
+                    arguments[parameterIndex] = Activator.CreateInstance(_typeAssociation[parameterType]);
+                    parameterIndex++;
+                }
+            }
+
+            return (T) Activator.CreateInstance(classType, arguments);
+        }
+
         public T Instantiate<T>() where T : class
         {
+            //Se la classe associata all'interfaccia desiderata ha un costruttore di default restituirne una sua
+            //istanza. Altrimenti delegare il compito al metodo instantiateParams <T> (Type classType).
             if (HasDefaultConstructor(_typeAssociation[typeof(T)]))
                 return (T) Activator.CreateInstance(_typeAssociation[typeof(T)]);
 
-            //Da finire.
-            //Activator.CreateInstance((_typeAssociation[typeof(T)]), new object[] { });
-            return null;
+            T returnValue;
+            try
+            {
+                returnValue = InstantiateParams<T>(_typeAssociation[typeof(T)]);
+            }
+            catch (ArgumentException e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+
+            return returnValue;
         }
 
         private bool HasDefaultConstructor(Type type)
         {
+            if (!type.IsClass)
+                return false;
+
             //Dato un type classe, restituisco true se e solo se ha costruttore di default.
             foreach (ConstructorInfo constructor in type.GetConstructors())
                 if (constructor.GetParameters().Length == 0)
