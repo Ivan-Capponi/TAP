@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace Domain
 {
@@ -50,5 +51,13 @@ namespace Domain
         public Utente Autore { get; set; }
         public DateTime Creazione { get; set; }
         public string Testo { get; set; }
+    }
+
+    public class SystemContex : DbContext
+    {
+        public DbSet <Utente> Utenti { get; set; }
+        public DbSet<Prodotto> Prodotti { get; set; }
+        public DbSet<Segnalazione> Segnalazioni { get; set; }
+        public DbSet<Commento> Commenti { get; set; }
     }
 }
