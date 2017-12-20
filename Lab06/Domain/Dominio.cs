@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace Domain
 {
+    [Table("Utenti")]
     public class Utente
     {
         [Key]
         public string Login { get; set; }
+
+        public string Password { get; set; }
         public string Nome { get; set; }
         public string Cognome { get; set; }
         public int Età { get; set; }
@@ -20,7 +24,7 @@ namespace Domain
     {
         Aperta, PresaInCarico, Risolta
     }
-
+    [Table("Segnalazioni")]
     public class Segnalazione
     {
         [Key]
@@ -34,7 +38,7 @@ namespace Domain
         public string Descrizione { get; set; }
         public string Testo { get; set; }
     }
-
+    [Table("Prodotti")]
     public class Prodotto
     {
         [Key]
@@ -43,7 +47,7 @@ namespace Domain
         public string NomeInterno { get; set; }
         public string Descrizione { get; set; }
     }
-
+    [Table("Commenti")]
     public class Commento
     {
         [Key]
@@ -53,7 +57,7 @@ namespace Domain
         public string Testo { get; set; }
     }
 
-    public class SystemContex : DbContext
+    public class SystemContext : DbContext
     {
         public DbSet <Utente> Utenti { get; set; }
         public DbSet<Prodotto> Prodotti { get; set; }
